@@ -199,3 +199,89 @@ namespace week4Task1
         }
     }
 }
+task search:
+1:
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter integers separated by spaces:");
+            string input = Console.ReadLine();
+
+          
+            string[] parts = input.Split(' ');
+            List<int> numbers = new List<int>();
+
+            for (int i = 0; i < parts.Length; i++)
+            {
+                int num = int.Parse(parts[i]);
+                numbers.Add(num);
+            }
+
+          
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                for (int j = i + 1; j < numbers.Count; j++)
+                {
+                    if (numbers[i] == numbers[j])
+                    {
+                        throw new Exception($"Duplicate number found: {numbers[i]}");
+                    }
+                }
+            }
+
+            Console.WriteLine("Numbers entered successfully without duplicates.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+}
+
+2:
+class Program
+{
+    static void Main()
+    {
+        try
+        {
+            Console.WriteLine("Enter a string:");
+            string input = Console.ReadLine();
+
+            CheckVowels(input);
+
+            Console.WriteLine("The string contains at least one vowel.");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+    }
+
+    // Method to check vowels manually
+    static void CheckVowels(string text)
+    {
+        bool hasVowel = false;
+
+        for (int i = 0; i < text.Length; i++)
+        {
+            char c = text[i];
+
+           
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' ||
+                c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U')
+            {
+                hasVowel = true;
+                break;
+            }
+        }
+
+        if (!hasVowel)
+        {
+            throw new Exception("The string does not contain any vowels.");
+        }
+    }
+}
